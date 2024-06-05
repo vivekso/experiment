@@ -1,0 +1,19 @@
+.container{
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.items{
+	width: 10em;
+}
+
+.solid{
+	border-style: solid;
+	text-align: center;
+}
+
+table, th, td {
+  border: 1px solid;
+}
