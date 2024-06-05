@@ -12,7 +12,8 @@ def handle_selection():
         if selection:  # Check if selection exists before branching
             if selection == 'student_id':
                 student = get_details_from_csv(selection_val, 'student')
-                return render_template('student_score.html', student=student)
+                # return student
+                return render_template('student_score.html', students=student)
             elif selection == 'course_id':
                 course_data = {'course_name': 'Programming 101', 'average_score': 85}
                 return render_template('course_score.html', course_data=course_data)
@@ -34,9 +35,13 @@ def get_details_from_csv(id, type):
         if type == 'student':
             score = 0
             for line in data:
+                sub_score = []
                 score += int(line.split(',')[2])
-                score_record.append(int(line.split(',')[2]))
-            return [score, data, score_record]
+                sub_score.append(id)
+                sub_score.append(line.split(',')[1])
+                sub_score.append(line.split(',')[2])
+                score_record.append(sub_score)
+            return [score, score_record]
 
         elif type == 'course':
             max_score = 0
