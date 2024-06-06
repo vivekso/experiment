@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="container">
+    <table id="student-details-table" class="items table">
+        <tr>
+            <th>Average Marks</th>
+            <th>Maximum Marks</th>
+        </tr>
+        <tr>
+            <td>{{course_data[1]|round(2)}}</td>
+            <td>{{course_data[0]}}</td>
+        </tr>
+    </table>
+    
+    <h3>Histogram of Marks</h3>
+    <canvas id="marksHistogram"></canvas>
+
+    <br>
+    <a href="student_form.html">Back to Form</a>
+
+    <script>
+        // Assuming course_data[3] is available as a global variable in your script
+        const courseData = {{ course_data[3] }};
+        
+        // Function to create histogram
+        function createHistogram(data) {
+            const ctx = document.getElementById('marksHistogram').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [], // Unique marks for labels
+                    datasets: [{
+                        label: 'Frequency',
+                        data: data.reduce((acc, mark) => {
+                            acc[mark] = (acc[mark] || 0) + 1;
+                            return acc;
+                        }, {}),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Convert the course data to a JavaScript array if it's not already
+        createHistogram(courseData);
+    </script>
+</body>
+</html>

@@ -1,8 +1,9 @@
-.container{
-	height: 200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.container {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;  /* Add this property */
 }
 
 .items{
@@ -16,4 +17,5 @@
 
 table, th, td {
   border: 1px solid;
+  table-layout: flex;
 }

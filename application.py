@@ -13,10 +13,12 @@ def handle_selection():
             if selection == 'student_id':
                 student = get_details_from_csv(selection_val, 'student')
                 # return student
-                return render_template('student_score.html', students=student)
+                return render_template('student_score.html', students=student, student_id = selection_val)
             elif selection == 'course_id':
-                course_data = {'course_name': 'Programming 101', 'average_score': 85}
-                return render_template('course_score.html', course_data=course_data)
+                data = get_details_from_csv(selection_val,'course')
+                # return data
+                # course_data = {'course_name': 'Programming 101', 'average_score': 85}
+                return render_template('course_score.html', course_data = data)
             else:
                 # Handle invalid selection (optional)
                 return render_template('error.html', message="Invalid selection")
